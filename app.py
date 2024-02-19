@@ -128,7 +128,7 @@ tps = pd.read_json("tps2.json",dtype=False)
 
 st.set_page_config(layout="wide")
 
-tab1, tab2 = st.tabs(["Suara Per Wilayah","Suara Paslon"])
+tab1, tab2 = st.tabs(["Suara Paslon","Suara Per Wilayah"])
 
 with tab2:
     st.header("Sirekap KPU vs KawalPemilu.org")
