@@ -128,60 +128,7 @@ tps = pd.read_json("tps2.json",dtype=False)
 
 st.set_page_config(layout="wide")
 
-tab1, tab2, tab3 = st.tabs(["Suara TPS","Suara Wilayah","Profil Paslon"])
-
-with tab1:
-    st.header("Sirekap KPU vs KawalPemilu.org")
-
-    c1, c2, c3, c4 = st.columns(4)
-
-    #Dropdown options PROVINSI
-    opsi_prov = tps[tps.index.astype(str).str.len() == 2]['id2name']
-    nm_prov = c1.selectbox('Pilih Provinsi:', opsi_prov)
-    id_prov = tps[(tps.index.astype(str).str.len() == 2) & (tps['id2name'] == nm_prov)].index[0]
-
-    #Dropdown options KABUPATEN/KOTA
-    opsi_kab = tps[(tps.index.astype(str).str.len() == 4) & (tps.index.astype(str).str.startswith(str(id_prov)))]['id2name']
-    nm_kab = c2.selectbox('Pilih Kabupaten/Kota:', opsi_kab)
-    id_kab = tps[(tps.index.astype(str).str.len() == 4) & (tps.index.astype(str).str.startswith(str(id_prov))) & (tps['id2name'] == nm_kab)].index[0]
-
-    #Dropdown options KECAMATAN
-    opsi_kec = tps[(tps.index.astype(str).str.len() == 6) & (tps.index.astype(str).str.startswith(str(id_kab)))]['id2name']
-    nm_kec = c3.selectbox('Pilih Kecamatan:', opsi_kec)
-    id_kec = tps[(tps.index.astype(str).str.len() == 6) & (tps.index.astype(str).str.startswith(str(id_kab))) & (tps['id2name'] == nm_kec)].index[0]
-
-    #Dropdown options DESA/KELURAHAN
-    opsi_desa = tps[(tps.index.astype(str).str.len() == 10) & (tps.index.astype(str).str.startswith(str(id_kec)))]['id2name']
-    nm_desa = c4.selectbox('Pilih Desa/Kelurahan:', opsi_desa)
-    id_desa = tps[(tps.index.astype(str).str.len() == 10) & (tps.index.astype(str).str.startswith(str(id_kec))) & (tps['id2name'] == nm_desa)].index[0]
-
-    # Menggunakan st.text_input() untuk memasukkan teks
-    id = st.text_input("**Masukkan 10 digit ID Desa/Kel:** ",id_desa)
-
-    c5, c6, c7 = st.columns([1,1,6])
-    c5.link_button("🗳️ SIREKAP KPU", "https://pemilu2024.kpu.go.id/pilpres/hitung-suara/"+str(id)[0:2]+"/"+str(id)[0:4]+"/"+str(id)[0:6]+"/"+str(id),use_container_width = True)
-    c6.link_button("🔢 KAWAL PEMILU", "https://kawalpemilu.org/h/"+str(id),use_container_width = True)
-    c7.write(f"""<b>  PROVINSI:</b> {tps.loc[int(str(id)[0:2]),'id2name']} | 
-                 <b>  KAB/KOTA:</b> {tps.loc[int(str(id)[0:4]),'id2name']} |
-                 <b>  KECAMATAN:</b> {tps.loc[int(str(id)[0:6]),'id2name']} | 
-                 <b>  DESA/KEL:</b> {tps.loc[int(id),'id2name']}
-                 """, unsafe_allow_html=True)
-
-    id = int(id)
-    # Menampilkan dataframe
-    df = compare(id, tingkat = 'desa')
-    st.dataframe(df.style.apply(row_color, axis=1),use_container_width = True)
-    #Menampilkan diagram batang
-    st.subheader('Diagram Suara:')
-    c8, c9 = st.columns(2)
-    c8.subheader('🔢 Kawal Pemilu')
-    c8.bar_chart(df[['id','pas1_kawal','pas2_kawal','pas3_kawal']].rename(columns={'id': 'id_tps'}), 
-                 x='id_tps',
-                 color=['#CCFFCC','#CCCCFF','#FFCCCC'])
-    c9.subheader('🗳️ Sirekap KPU')
-    c9.bar_chart(df[['id','pas1_kpu','pas2_kpu','pas3_kpu']].rename(columns={'id': 'id_tps'}), 
-                 x='id_tps', 
-                 color=['#CCFFCC','#CCCCFF','#FFCCCC'])
+tab1, tab2 = st.tabs(["Suara Per Wilayah","Suara Paslon"])
 
 with tab2:
     st.header("Sirekap KPU vs KawalPemilu.org")
@@ -303,8 +250,8 @@ with tab2:
                      color=['#CCFFCC','#CCCCFF','#FFCCCC'])
 
 
-with tab3:
-    st.header("Profil Pasangan Capres-Cawapres")
+with tab1:
+    st.header("Suara Pasangan")
 
     #Rekapitulasi Sirekap KPU
     kpu = requests.get("https://sirekap-obj-data.kpu.go.id/pemilu/hhcw/ppwp.json").json()['chart']
