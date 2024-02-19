@@ -277,7 +277,7 @@ with tab1:
     with c8:
         st.header("01")
         c8a, c8b = st.columns([4,2])
-        c8a.image("https://asset.kompas.com/crops/F2ZGFqk92vfeRAZWRvmT3prfoTw=/128x34:1158x720/750x500/data/photo/2023/12/12/65782fa87b527.png", use_column_width=True)
+        c8a.image("https://asset.kompas.com/data/2023/10/25/kompascom/widget/bacapres/images/paslon/Anies-Muhaimin.png", use_column_width=True)
         with c8b:
             st.metric(label=":ballot_box_with_ballot: Sirekap KPU", 
                       value=str(round((kpu_pas1/kpu_tot)*100,2))+'%', 
@@ -293,7 +293,7 @@ with tab1:
     with c9:
         st.header("02")
         c9a, c9b = st.columns([4,2])
-        c9a.image("https://asset.kompas.com/crops/TX6gacoyGQvvXN6OfM0uHhmwHr0=/74x0:1154x720/750x500/data/photo/2023/12/12/65782d32dfa40.png", use_column_width=True)
+        c9a.image("https://asset.kompas.com/data/2023/10/25/kompascom/widget/bacapres/images/paslon/Prabowo-Gibran.png", use_column_width=True)
         with c9b:
             st.metric(label=":ballot_box_with_ballot: Sirekap KPU", 
                       value=str(round((kpu_pas2/kpu_tot)*100,2))+'%', 
