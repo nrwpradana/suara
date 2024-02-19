@@ -143,7 +143,9 @@ timestamp = get_timestamp_from_json(json_url)
 
 tps = pd.read_json("tps.json",dtype=False)
 
-st.set_page_config(layout="wide")
+st.set_page_config( page_title="SiKawal",
+                   page_icon=":calendar:", 
+                   layout="wide")
 
 tab1, tab2 = st.tabs(["Suara Paslon","Suara Per Wilayah"])
 
@@ -269,7 +271,7 @@ with tab2:
 
 with tab1:
     st.header("Suara Pasangan (Sirekap vs KawalPemilu)")
-    st.text("Data update :" + timestamp)
+    st.text("Data update : " + timestamp)
 
     #Rekapitulasi Sirekap KPU
     kpu = requests.get("https://sirekap-obj-data.kpu.go.id/pemilu/hhcw/ppwp.json").json()['chart']
