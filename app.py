@@ -150,7 +150,8 @@ st.set_page_config( page_title="SiKawal",
 tab1, tab2 = st.tabs(["Suara Paslon","Suara Per Wilayah"])
 
 with tab2:
-    st.header("Sirekap KPU vs KawalPemilu.org")
+    st.header("Sirekap vs KawalPemilu")
+    st.text("Data update : " + timestamp)
 
     d1, d2, d3 = st.columns(3)
 
