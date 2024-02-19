@@ -3,6 +3,7 @@ import requests
 import pandas as pd
 import numpy as np
 import streamlit as st
+import time
 
 def compare(id,tingkat):
     #get data from api kawalpemilu.org
@@ -123,6 +124,22 @@ def compare(id,tingkat):
 def row_color(row):
     color = '#8DE3D1' if row['check'] == 'sesuai' else '#EC7063' if row['check'] == 'markup' or row['check'] == 'tidak sesuai' else '#e3e3e3'
     return [f'background-color: {color}'] * len(row)
+
+# URL JSON yang akan diambil
+json_url = "https://sirekap-obj-data.kpu.go.id/pemilu/hhcw/ppwp.json"
+
+# Fungsi untuk mendapatkan timestamp ('ts') dari file JSON
+def get_timestamp_from_json(json_url):
+    try:
+        response = requests.get(json_url)
+        data = response.json()
+        timestamp = data.get('ts')
+        return timestamp
+    except Exception as e:
+        st.error(f"Terjadi kesalahan: {str(e)}")
+        return None
+
+timestamp = get_timestamp_from_json(json_url)
 
 tps = pd.read_json("tps.json",dtype=False)
 
@@ -252,6 +269,7 @@ with tab2:
 
 with tab1:
     st.header("Suara Pasangan (Sirekap vs KawalPemilu)")
+    st.text("Data update :" + timestamp)
 
     #Rekapitulasi Sirekap KPU
     kpu = requests.get("https://sirekap-obj-data.kpu.go.id/pemilu/hhcw/ppwp.json").json()['chart']
