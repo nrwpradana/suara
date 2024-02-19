@@ -124,7 +124,7 @@ def row_color(row):
     color = '#8DE3D1' if row['check'] == 'sesuai' else '#EC7063' if row['check'] == 'markup' or row['check'] == 'tidak sesuai' else '#e3e3e3'
     return [f'background-color: {color}'] * len(row)
 
-tps = pd.read_json("tps2.json",dtype=False)
+tps = pd.read_json("tps.json",dtype=False)
 
 st.set_page_config(layout="wide")
 
