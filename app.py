@@ -251,7 +251,7 @@ with tab2:
 
 
 with tab1:
-    st.header("Suara Pasangan")
+    st.header("Suara Pasangan (Sirekap vs KawalPemilu)")
 
     #Rekapitulasi Sirekap KPU
     kpu = requests.get("https://sirekap-obj-data.kpu.go.id/pemilu/hhcw/ppwp.json").json()['chart']
@@ -277,7 +277,7 @@ with tab1:
     with c8:
         st.header("01")
         c8a, c8b = st.columns([4,2])
-        c8a.image("https://asset.kompas.com/data/2023/10/25/kompascom/widget/bacapres/images/paslon/Anies-Muhaimin.png", use_column_width=True)
+        c8a.image("https://asset.kompas.com/crops/F2ZGFqk92vfeRAZWRvmT3prfoTw=/128x34:1158x720/750x500/data/photo/2023/12/12/65782fa87b527.png", use_column_width=True)
         with c8b:
             st.metric(label=":ballot_box_with_ballot: Sirekap KPU", 
                       value=str(round((kpu_pas1/kpu_tot)*100,2))+'%', 
@@ -287,13 +287,13 @@ with tab1:
                       value=str(round((kawal_pas1/kawal_tot)*100,2))+'%', 
                       delta="{:,}".format(kawal_pas1),
                       delta_color = 'off')
-        st.subheader("H. ANIES RASYID BASWEDAN, Ph.D. - Dr. (H.C.) H. A. MUHAIMIN ISKANDAR")
+        #st.subheader("H. ANIES RASYID BASWEDAN, Ph.D. - Dr. (H.C.) H. A. MUHAIMIN ISKANDAR")
         
     
     with c9:
         st.header("02")
         c9a, c9b = st.columns([4,2])
-        c9a.image("https://asset.kompas.com/data/2023/10/25/kompascom/widget/bacapres/images/paslon/Prabowo-Gibran.png", use_column_width=True)
+        c9a.image("https://asset.kompas.com/crops/TX6gacoyGQvvXN6OfM0uHhmwHr0=/74x0:1154x720/750x500/data/photo/2023/12/12/65782d32dfa40.png", use_column_width=True)
         with c9b:
             st.metric(label=":ballot_box_with_ballot: Sirekap KPU", 
                       value=str(round((kpu_pas2/kpu_tot)*100,2))+'%', 
@@ -303,7 +303,7 @@ with tab1:
                       value=str(round((kawal_pas2/kawal_tot)*100,2))+'%', 
                       delta="{:,}".format(kawal_pas2),
                       delta_color = 'off')
-        st.subheader("H. PRABOWO SUBIANTO - GIBRAN RAKABUMING RAKA")
+        #st.subheader("H. PRABOWO SUBIANTO - GIBRAN RAKABUMING RAKA")
     
     with c10:
         st.header("03")
@@ -318,4 +318,4 @@ with tab1:
                       value=str(round((kawal_pas3/kawal_tot)*100,2))+'%', 
                       delta="{:,}".format(kawal_pas3),
                       delta_color = 'off')   
-        st.subheader("H. GANJAR PRANOWO, S.H., M.I.P. - Prof. Dr. H. M. MAHFUD MD")
+        #st.subheader("H. GANJAR PRANOWO, S.H., M.I.P. - Prof. Dr. H. M. MAHFUD MD")
